@@ -1,0 +1,1005 @@
+{
+ "version": 2,
+ "games": [
+  {
+   "id": "lives-001",
+   "title": "Zelda: Ocarina of Time",
+   "platform": "N64",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:00.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-002",
+   "title": "Zelda: Breath of the Wild 🌍",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:01.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-003",
+   "title": "Super Mario 64",
+   "platform": "N64",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:02.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-004",
+   "title": "Tetris",
+   "platform": "Game Boy",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:03.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-005",
+   "title": "Half-Life 2",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:04.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-006",
+   "title": "Red Dead Redemption 2 🌍",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:05.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-007",
+   "title": "The Witcher 3 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:06.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-008",
+   "title": "Elden Ring 🌍⚡",
+   "platform": "PS5",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:07.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-009",
+   "title": "Super Mario Galaxy",
+   "platform": "Wii",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:08.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-010",
+   "title": "Zelda: Tears of the Kingdom 🌍",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:09.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-011",
+   "title": "The Last of Us 💔",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:10.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-012",
+   "title": "Super Mario Bros.",
+   "platform": "NES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:11.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-013",
+   "title": "Minecraft 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:12.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-014",
+   "title": "GTA V 🌍",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:13.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-015",
+   "title": "Portal 2",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:14.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-016",
+   "title": "Chrono Trigger",
+   "platform": "SNES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:15.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-017",
+   "title": "Final Fantasy VII",
+   "platform": "PS1",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:16.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-018",
+   "title": "Skyrim 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:17.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-019",
+   "title": "Super Metroid",
+   "platform": "SNES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:18.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-020",
+   "title": "Zelda: A Link to the Past",
+   "platform": "SNES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:19.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-021",
+   "title": "Dark Souls ⚡",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:20.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-022",
+   "title": "Mass Effect 2",
+   "platform": "Xbox 360",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:21.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-023",
+   "title": "Baldur's Gate 3",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:22.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-024",
+   "title": "Metal Gear Solid",
+   "platform": "PS1",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:23.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-025",
+   "title": "Resident Evil 4",
+   "platform": "GameCube",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:24.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-026",
+   "title": "Shadow of the Colossus",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:25.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-027",
+   "title": "God of War (2018)",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:26.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-028",
+   "title": "BioShock",
+   "platform": "Xbox 360",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:27.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-029",
+   "title": "GTA: San Andreas 🌍",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:28.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-030",
+   "title": "Super Mario Bros. 3",
+   "platform": "NES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:29.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-031",
+   "title": "Super Mario World",
+   "platform": "SNES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:30.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-032",
+   "title": "Doom (1993)",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:31.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-033",
+   "title": "Halo: Combat Evolved",
+   "platform": "Xbox",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:32.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-034",
+   "title": "Metroid Prime",
+   "platform": "GameCube",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:33.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-035",
+   "title": "Zelda: Majora's Mask",
+   "platform": "N64",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:34.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-036",
+   "title": "Bloodborne ⚡",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:35.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-037",
+   "title": "Persona 5 Royal",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:36.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-038",
+   "title": "Final Fantasy VI",
+   "platform": "SNES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:37.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-039",
+   "title": "Hollow Knight",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:38.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-040",
+   "title": "Hades",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:39.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-041",
+   "title": "Uncharted 2",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:40.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-042",
+   "title": "Castlevania: Symphony of the Night",
+   "platform": "PS1",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:41.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-043",
+   "title": "Deus Ex",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:42.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-044",
+   "title": "Super Smash Bros. Ultimate",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:43.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-045",
+   "title": "Mario Kart 8 Deluxe",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:44.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-046",
+   "title": "Street Fighter II",
+   "platform": "Arcade",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:45.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-047",
+   "title": "GoldenEye 007",
+   "platform": "N64",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:46.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-048",
+   "title": "Pokémon Red/Blue",
+   "platform": "Game Boy",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:47.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-049",
+   "title": "World of Warcraft 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:48.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-050",
+   "title": "StarCraft",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:49.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-051",
+   "title": "Diablo II",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:50.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-052",
+   "title": "Civilization IV or VI",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:51.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-053",
+   "title": "Fallout: New Vegas 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:52.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-054",
+   "title": "Silent Hill 2 💔",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:53.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-055",
+   "title": "Disco Elysium 💔",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:54.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-056",
+   "title": "Undertale",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:55.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-057",
+   "title": "Outer Wilds 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:56.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-058",
+   "title": "Sekiro ⚡",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:57.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-059",
+   "title": "Ghost of Tsushima 🌍",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:58.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-060",
+   "title": "Batman: Arkham City",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:00:59.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-061",
+   "title": "Clair Obscur: Expedition 33",
+   "platform": "PS5",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:00.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-062",
+   "title": "Astro Bot",
+   "platform": "PS5",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:01.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-063",
+   "title": "Super Mario Odyssey",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:02.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-064",
+   "title": "God of War Ragnarök",
+   "platform": "PS5",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:03.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-065",
+   "title": "Death Stranding 🌍",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:04.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-066",
+   "title": "Zelda: The Wind Waker 🌍",
+   "platform": "GameCube",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:05.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-067",
+   "title": "Journey",
+   "platform": "PS3",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:06.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-068",
+   "title": "Stardew Valley 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:07.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-069",
+   "title": "Animal Crossing: New Horizons 🌍",
+   "platform": "Switch",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:08.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-070",
+   "title": "Celeste",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:09.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-071",
+   "title": "Inside",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:10.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-072",
+   "title": "Portal",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:11.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-073",
+   "title": "Half-Life",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:12.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-074",
+   "title": "Metal Gear Solid 3",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:13.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-075",
+   "title": "Final Fantasy X",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:14.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-076",
+   "title": "Final Fantasy XIV 🌍",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:15.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-077",
+   "title": "Monster Hunter: World",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:16.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-078",
+   "title": "NieR: Automata",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:17.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-079",
+   "title": "Yakuza 0",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:18.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-080",
+   "title": "Divinity: Original Sin 2",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:19.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-081",
+   "title": "Tony Hawk's Pro Skater 2",
+   "platform": "PS1",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:20.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-082",
+   "title": "SoulCalibur",
+   "platform": "Dreamcast",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:21.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-083",
+   "title": "Hollow Knight: Silksong ⚡",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:22.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-084",
+   "title": "Hades II",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:23.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-085",
+   "title": "Balatro",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:24.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-086",
+   "title": "Marvel's Spider-Man 2",
+   "platform": "PS5",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:25.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-087",
+   "title": "Horizon Zero Dawn 🌍",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:26.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-088",
+   "title": "Titanfall 2",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:27.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-089",
+   "title": "Doom (2016)",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:28.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-090",
+   "title": "Ico",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:29.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-091",
+   "title": "Ōkami 🌍",
+   "platform": "PS2",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:30.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-092",
+   "title": "Banjo-Kazooie",
+   "platform": "N64",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:31.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-093",
+   "title": "Sonic the Hedgehog 2",
+   "platform": "Genesis",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:32.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-094",
+   "title": "Mega Man 2",
+   "platform": "NES",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:33.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-095",
+   "title": "Return of the Obra Dinn",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:34.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-096",
+   "title": "What Remains of Edith Finch 💔",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:35.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-097",
+   "title": "It Takes Two",
+   "platform": "PS4",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:36.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-098",
+   "title": "Cuphead ⚡",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:37.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-099",
+   "title": "Slay the Spire",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:38.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  },
+  {
+   "id": "lives-100",
+   "title": "Blue Prince",
+   "platform": "PC",
+   "status": "todo",
+   "rating": 0,
+   "added": "2026-11-21T00:01:39.000Z",
+   "beatenAt": null,
+   "updatedAt": "2026-11-21T05:30:22.773Z"
+  }
+ ]
+}

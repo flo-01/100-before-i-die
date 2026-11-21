@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>100 Before I Die</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="100 Games">
+<meta name="theme-color" content="#040704">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #040704;
+    --panel: #071007;
+    --fg: #39ff6a;
+    --dim: #1d7a35;
+    --accent: #ff3df0;
+    --sun: #ffb000;
+    --danger: #ff4d4d;
+  }
+  body.amber { --fg: #ffb000; --dim: #8a5f00; --accent: #ff5f3d; --sun: #ffe066; --panel: #100b04; }
+  body.cyan  { --fg: #3df5ff; --dim: #1a7680; --accent: #b46bff; --sun: #ff3df0; --panel: #040c10; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "VT323", ui-monospace, "Courier New", monospace;
+    font-size: 20px;
+    line-height: 1.15;
+    text-shadow: 0 0 4px currentColor;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 16px; padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+  /* ---------- CRT overlay ---------- */
+  .crt::before, .crt::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+  }
+  .crt::before {
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.28) 2px 3px);
+    animation: flicker 4s infinite steps(60);
+  }
+  .crt::after {
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.75) 100%);
+  }
+  @keyframes flicker { 0%,100% { opacity: .9 } 50% { opacity: 1 } 51% { opacity: .82 } 52% { opacity: 1 } }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; }
+  .logo { margin: 0; font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace; font-weight: bold; font-size: clamp(5px, 1.6vw, 15px); line-height: 1.1; white-space: pre; color: var(--fg); overflow: hidden; }
+  .tag { color: var(--dim); margin: 6px 0 12px; letter-spacing: 2px; }
+
+  /* ---------- 3D scene ---------- */
+  .scene {
+    position: relative; width: 100%; border: 2px solid var(--dim);
+    background: var(--panel); overflow: hidden; cursor: grab;
+  }
+  .scene pre {
+    position: absolute; top: 0; left: 0; margin: 0;
+    font-family: inherit; font-size: 14px; line-height: 14px; white-space: pre;
+  }
+  #sky  { color: var(--sun); opacity: .55; }
+  #grid { color: var(--accent); }
+  #obj  { color: var(--fg); position: relative; }
+  .hud {
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    border: 2px solid var(--dim); border-top: 0; padding: 6px 10px; color: var(--fg);
+  }
+  .hud .sel { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+  .bar { white-space: pre; }
+
+  /* ---------- Controls ---------- */
+  .box { border: 2px solid var(--dim); padding: 10px; margin-top: 16px; }
+  .box > .title { color: var(--dim); margin: -22px 0 6px; background: var(--bg); display: inline-block; padding: 0 6px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  input, select, button {
+    font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--dim);
+    padding: 4px 8px; text-shadow: inherit; border-radius: 0;
+  }
+  input::placeholder { color: var(--dim); }
+  input:focus, select:focus, button:focus-visible { outline: 1px solid var(--fg); }
+  input.title-in { flex: 3 1 220px; }
+  input.plat-in { flex: 1 1 120px; }
+  button { cursor: pointer; }
+  button:hover { background: var(--fg); color: var(--bg); text-shadow: none; }
+  button.on { background: var(--dim); color: var(--bg); text-shadow: none; }
+  .spacer { flex: 1; }
+
+  /* ---------- List ---------- */
+  .stats { color: var(--dim); margin: 6px 0 4px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li.game {
+    display: flex; align-items: center; gap: 10px; padding: 4px 6px;
+    border-bottom: 1px dashed rgba(127,127,127,.25); cursor: pointer;
+  }
+  li.game:hover, li.game.selected { background: rgba(57,255,106,.08); }
+  li.game.selected { outline: 1px solid var(--fg); }
+  .num { color: var(--dim); min-width: 42px; }
+  .chk { min-width: 34px; background: none; border: 0; padding: 0; }
+  .chk:hover { background: none; color: var(--fg); text-shadow: 0 0 8px currentColor; }
+  .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: uppercase; }
+  li.beaten .name { text-decoration: line-through; color: var(--dim); }
+  li.playing .name { color: var(--sun); }
+  .plat { color: var(--dim); min-width: 70px; text-align: right; white-space: nowrap; }
+  .stars { white-space: nowrap; }
+  .stars span { cursor: pointer; padding: 0 1px; }
+  .stars span.off { color: var(--dim); opacity: .6; }
+  .del { border: 0; color: var(--danger); padding: 0 4px; background: none; }
+  .del:hover { background: var(--danger); color: var(--bg); }
+  .help { color: var(--dim); margin: 0 0 8px; font-size: 18px; }
+  .help a { color: var(--fg); }
+  [hidden] { display: none !important; }
+  .empty { color: var(--dim); padding: 16px; text-align: center; white-space: pre; }
+  footer { color: var(--dim); text-align: center; margin: 20px 0 8px; font-size: 16px; }
+
+  /* ---------- Boot screen ---------- */
+  .notch {
+    position: fixed; top: 0; left: 0; right: 0; height: env(safe-area-inset-top, 0px);
+    background: var(--bg); z-index: 45;
+  }
+  #boot {
+    position: fixed; inset: 0; background: var(--bg); z-index: 40; padding: 24px;
+    white-space: pre-wrap; color: var(--fg); transition: opacity .4s;
+  }
+  #boot.gone { opacity: 0; pointer-events: none; }
+  .blink { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    .plat { display: none; }
+    .name { white-space: normal; overflow-wrap: anywhere; }
+  }
+</style>
+</head>
+<body class="crt">
+<div class="notch"></div>
+<div id="boot"></div>
+
+<div class="wrap">
+  <header>
+<pre class="logo" aria-label="100 Before I Die">
+ _  ___   ___    ___  ___ ___ ___  ___ ___   ___   ___ ___ ___
+/ |/ _ \ / _ \  | _ )| __| __/ _ \| _ \ __| |_ _| |   \_ _| __|
+| | (_) | (_) | | _ \| _|| _| (_) |   / _|   | |  | |) | || _|
+|_|\___/ \___/  |___/|___|_| \___/|_|_\___| |___| |___/___|___|
+</pre>
+    <div class="tag">&gt; THE ONLY QUEST LOG THAT MATTERS &lt;</div>
+  </header>
+
+  <div class="scene" id="scene" title="Drag to spin the cartridge">
+    <pre id="sky"></pre>
+    <pre id="grid"></pre>
+    <pre id="obj"></pre>
+  </div>
+  <div class="hud">
+    <span class="bar" id="bar"></span>
+    <span class="sel" id="sel">&gt; SELECT A GAME</span>
+  </div>
+
+  <div class="box">
+    <div class="title">[ INSERT CARTRIDGE ]</div>
+    <form class="row" id="addForm" autocomplete="off">
+      <input class="title-in" id="titleIn" placeholder="GAME TITLE..." maxlength="80" required>
+      <input class="plat-in" id="platIn" placeholder="PLATFORM" maxlength="20">
+      <button type="submit">[ ADD ]</button>
+    </form>
+  </div>
+
+  <div class="box">
+    <div class="title">[ QUEST LOG ]</div>
+    <div class="row">
+      <button data-filter="all" class="on">ALL</button>
+      <button data-filter="todo">BACKLOG</button>
+      <button data-filter="playing">PLAYING</button>
+      <button data-filter="beaten">BEATEN</button>
+      <input id="search" placeholder="SEARCH..." style="flex:1 1 140px">
+    </div>
+    <div class="stats" id="stats"></div>
+    <ul id="list"></ul>
+  </div>
+
+  <div class="box">
+    <div class="title">[ CLOUD SAVE ]</div>
+    <div id="cloudStatus" class="stats" style="margin-top:0"></div>
+    <div id="cloudOff">
+      <p class="help">SYNC THIS LIST ACROSS ALL YOUR DEVICES AND NEVER LOSE IT. IT'S SAVED AS A
+        PRIVATE FILE (A "SECRET GIST") IN YOUR OWN GITHUB ACCOUNT.<br>
+        1. <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=100%20Before%20I%20Die" target="_blank" rel="noopener">CREATE A TOKEN</a>
+        (ONLY THE "gist" BOX TICKED) &middot; 2. PASTE IT BELOW &middot; 3. DO THE SAME ON EACH DEVICE.</p>
+      <form class="row" id="cloudForm" autocomplete="off">
+        <input id="tokenIn" type="password" placeholder="PASTE GITHUB TOKEN..." style="flex:1 1 220px">
+        <button type="submit">[ CONNECT ]</button>
+      </form>
+    </div>
+    <div id="cloudOn" class="row" hidden>
+      <button id="syncBtn">SYNC NOW</button>
+      <button id="disconnectBtn">DISCONNECT</button>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="title">[ SYSTEM ]</div>
+    <div class="row">
+      <button id="themeBtn">THEME: GREEN</button>
+      <button id="exportBtn">EXPORT SAVE</button>
+      <button id="importBtn">LOAD SAVE</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <span class="spacer"></span>
+      <button id="wipeBtn" style="color:var(--danger)">WIPE ALL</button>
+    </div>
+  </div>
+
+  <footer>CLICK [ ] TO CYCLE: BACKLOG &rarr; PLAYING &rarr; BEATEN &middot; CLICK STARS TO RATE &middot; AUTO-SAVED HERE, AND TO THE CLOUD WHEN CONNECTED</footer>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  // =========================================================
+  //  DATA
+  // =========================================================
+  const KEY = "hundred-games-v1";
+  const MAX = 100;
+  // `all` holds every record, including deleted ones ("tombstones"), so that
+  // deletes sync between devices. `games` is the visible list derived from it.
+  let all = [];
+  let games = [];
+  let filter = "all";
+  let query = "";
+  let selectedId = null;
+
+  const now = () => new Date().toISOString();
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const time = s => Date.parse(s) || 0;
+
+  // make any record (from storage, a save file or the cloud) safe to use
+  function clean(g) {
+    if (!g || typeof g !== "object" || typeof g.id !== "string") return null;
+    if (g.deleted) return { id: g.id, deleted: true, updatedAt: g.updatedAt || now() };
+    if (typeof g.title !== "string" || !g.title.trim()) return null;
+    return {
+      id: g.id,
+      title: g.title.slice(0, 80),
+      platform: typeof g.platform === "string" ? g.platform.slice(0, 20) : "",
+      status: ["todo", "playing", "beaten"].includes(g.status) ? g.status : "todo",
+      rating: Math.max(0, Math.min(5, g.rating | 0)),
+      added: g.added || now(),
+      beatenAt: g.beatenAt || null,
+      // kept so a list shared with the creator edition never loses its play data
+      playSeconds: Math.max(0, +g.playSeconds || 0),
+      deaths: Math.max(0, g.deaths | 0),
+      moments: (Array.isArray(g.moments) ? g.moments : []).filter(m => m && isFinite(m.t)).slice(-300)
+        .map(m => ({ t: Math.max(0, Math.round(m.t)), note: typeof m.note === "string" ? m.note.slice(0, 140) : "", at: m.at || null })),
+      updatedAt: g.updatedAt || g.added || "1970-01-01T00:00:00.000Z"
+    };
+  }
+  const cleanList = list => (Array.isArray(list) ? list : []).map(clean).filter(Boolean);
+
+  // merge two lists: for each game, the most recently changed version wins
+  function merge(a, b) {
+    const map = new Map();
+    for (const g of [...a, ...b]) {
+      const cur = map.get(g.id);
+      if (!cur || time(g.updatedAt) > time(cur.updatedAt)) map.set(g.id, g);
+    }
+    // forget tombstones older than 180 days
+    const cutoff = Date.now() - 180 * 864e5;
+    return [...map.values()].filter(g => !g.deleted || time(g.updatedAt) > cutoff);
+  }
+  const fingerprint = list => JSON.stringify([...list].sort((x, y) => x.id < y.id ? -1 : 1));
+
+  function refresh() {
+    games = all.filter(g => !g.deleted).sort((x, y) => time(x.added) - time(y.added) || (x.id < y.id ? -1 : 1));
+  }
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      all = cleanList(raw ? JSON.parse(raw) : []);
+    } catch { all = []; }
+    refresh();
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(all)); } catch { /* storage blocked */ }
+  }
+  // call after every change the user makes
+  function changed() {
+    refresh(); save(); renderList(); Cloud.schedule();
+  }
+  load();
+  // ask the browser not to clear our storage when space runs low
+  try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch {}
+
+  // =========================================================
+  //  BOOT SCREEN
+  // =========================================================
+  const bootLines = [
+    "100-BEFORE-I-DIE OS  v1.0",
+    "(C) YOU. ALL RIGHTS RESERVED.",
+    "",
+    "MEMORY TEST ........ 640K OK",
+    "LOADING SAVE FILE .. " + games.length + " CARTRIDGES FOUND",
+    "CALIBRATING 3D ASCII ENGINE ... OK",
+    "",
+    "LIFE IS SHORT. PRESS START."
+  ];
+  const boot = document.getElementById("boot");
+  let bl = 0;
+  const bootTimer = setInterval(() => {
+    if (bl < bootLines.length) { boot.textContent += bootLines[bl++] + "\n"; }
+    else { clearInterval(bootTimer); setTimeout(() => boot.classList.add("gone"), 350); }
+  }, 110);
+  boot.addEventListener("click", () => { clearInterval(bootTimer); boot.classList.add("gone"); });
+
+  // =========================================================
+  //  3D ASCII ENGINE
+  // =========================================================
+  const scene = document.getElementById("scene");
+  const skyEl = document.getElementById("sky");
+  const gridEl = document.getElementById("grid");
+  const objEl = document.getElementById("obj");
+  const SHADE = ".,-~:;=!*#$@";
+  const ROWS = 26;
+  let COLS = 80, charW = 7, charH = 14;
+
+  function measure() {
+    const probe = document.createElement("span");
+    probe.textContent = "M".repeat(50);
+    objEl.textContent = "";
+    objEl.appendChild(probe);
+    charW = probe.getBoundingClientRect().width / 50 || 7;
+    objEl.textContent = "";
+    COLS = Math.max(30, Math.floor(scene.clientWidth / charW));
+    scene.style.height = (ROWS * charH) + "px";
+  }
+
+  // rotation state (auto-spin + drag)
+  let rotY = 0, rotX = -0.35, spinV = 0.9, dragging = false, lastX = 0, lastY = 0;
+  scene.addEventListener("pointerdown", e => { dragging = true; lastX = e.clientX; lastY = e.clientY; scene.setPointerCapture(e.pointerId); });
+  scene.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    rotY += (e.clientX - lastX) * 0.012;
+    rotX = Math.max(-1.3, Math.min(1.3, rotX + (e.clientY - lastY) * 0.012));
+    spinV = (e.clientX - lastX) * 0.6;
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  scene.addEventListener("pointerup", () => { dragging = false; });
+
+  // particles for "BEATEN!" celebration
+  let particles = [];
+  let banner = null; // { text, until }
+  function celebrate(text) {
+    for (let i = 0; i < 160; i++) {
+      const a = Math.random() * Math.PI * 2, b = Math.acos(2 * Math.random() - 1), s = 1.5 + Math.random() * 2.5;
+      particles.push({
+        x: 0, y: 0, z: 0,
+        vx: Math.sin(b) * Math.cos(a) * s, vy: Math.cos(b) * s + 1.5, vz: Math.sin(b) * Math.sin(a) * s,
+        life: 1.2 + Math.random() * 1.2
+      });
+    }
+    banner = { text, until: performance.now() + 2200 };
+    spinV = 12;
+  }
+
+  // the cartridge: a box with a label + grip ridges
+  const HX = 0.85, HY = 1.0, HZ = 0.2;
+  const faces = [
+    // center, normal, axis-u (half length), axis-v (half length), id
+    { c: [0, 0, -HZ], n: [0, 0, -1], u: [HX, 0, 0], v: [0, HY, 0], id: "front" },
+    { c: [0, 0,  HZ], n: [0, 0,  1], u: [HX, 0, 0], v: [0, HY, 0], id: "back" },
+    { c: [ HX, 0, 0], n: [ 1, 0, 0], u: [0, 0, HZ], v: [0, HY, 0], id: "side" },
+    { c: [-HX, 0, 0], n: [-1, 0, 0], u: [0, 0, HZ], v: [0, HY, 0], id: "side" },
+    { c: [0,  HY, 0], n: [0,  1, 0], u: [HX, 0, 0], v: [0, 0, HZ], id: "top" },
+    { c: [0, -HY, 0], n: [0, -1, 0], u: [HX, 0, 0], v: [0, 0, HZ], id: "bottom" },
+  ];
+  const LIGHT = norm([-0.5, 0.8, -1]);
+  function norm(v) { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; }
+
+  // texture: returns brightness multiplier for a point on a face (u,v in [-1,1])
+  function texture(face, u, v) {
+    if (face.id === "front") {
+      // label window
+      if (Math.abs(u) < 0.72 && v > -0.35 && v < 0.78) {
+        // edge of label is bright, inside shows progress fill from the bottom
+        if (Math.abs(u) > 0.66 || v < -0.29 || v > 0.72) return 1.25;
+        const fill = -0.29 + (0.72 + 0.29) * progress();
+        return v < fill ? 1.15 : 0.35;
+      }
+      // grip ridges at the bottom
+      if (v < -0.55 && Math.abs(u) < 0.8) return (Math.floor((u + 1) * 9) % 2) ? 0.45 : 1.0;
+      // notch at top
+      if (v > 0.88 && Math.abs(u) < 0.3) return 0.3;
+    }
+    if (face.id === "back" && Math.abs(u) < 0.25 && Math.abs(v - 0.2) < 0.25) return 0.5; // screw plate
+    return 1;
+  }
+
+  function progress() { return games.filter(g => g.status === "beaten").length / MAX; }
+
+  function rotate(p, cy, sy, cx, sx) {
+    // yaw (Y) then pitch (X)
+    let x = p[0] * cy + p[2] * sy, z = -p[0] * sy + p[2] * cy, y = p[1];
+    const y2 = y * cx - z * sx, z2 = y * sx + z * cx;
+    return [x, y2, z2];
+  }
+
+  const K2 = 5; // camera distance
+  function renderObject(t) {
+    const W = COLS, H = ROWS, N = W * H;
+    const out = new Array(N).fill(" ");
+    const zbuf = new Float32Array(N); // stores 1/z, 0 = empty
+    const K1y = H * 1.4, K1x = K1y * (charH / charW);
+    const cx = W / 2, cyc = H * 0.46 + Math.sin(t * 1.3) * 0.8;
+    const cY = Math.cos(rotY), sY = Math.sin(rotY), cX = Math.cos(rotX), sX = Math.sin(rotX);
+
+    for (const f of faces) {
+      const n = rotate(f.n, cY, sY, cX, sX);
+      const ul = Math.hypot(...f.u), vl = Math.hypot(...f.v);
+      const nu = Math.ceil(ul * K1x * 0.9) + 4, nv = Math.ceil(vl * K1y * 0.9) + 4;
+      for (let i = 0; i <= nu; i++) {
+        const u = -1 + 2 * i / nu;
+        for (let j = 0; j <= nv; j++) {
+          const v = -1 + 2 * j / nv;
+          const p = rotate([
+            f.c[0] + f.u[0] * u + f.v[0] * v,
+            f.c[1] + f.u[1] * u + f.v[1] * v,
+            f.c[2] + f.u[2] * u + f.v[2] * v
+          ], cY, sY, cX, sX);
+          const ooz = 1 / (p[2] + K2);
+          const xp = Math.round(cx + K1x * ooz * p[0]);
+          const yp = Math.round(cyc - K1y * ooz * p[1]);
+          if (xp < 0 || xp >= W || yp < 0 || yp >= H) continue;
+          const idx = xp + yp * W;
+          if (ooz <= zbuf[idx]) continue;
+          zbuf[idx] = ooz;
+          // edges of each face get a bright outline
+          const edge = (Math.abs(u) > 0.97 || Math.abs(v) > 0.97) ? 1.2 : 1;
+          let L = (n[0] * LIGHT[0] + n[1] * LIGHT[1] + n[2] * LIGHT[2]);
+          L = (0.18 + Math.max(0, L) * 0.82) * texture(f, u, v) * edge;
+          const ci = Math.max(0, Math.min(SHADE.length - 1, Math.floor(L * (SHADE.length - 1))));
+          out[idx] = SHADE[ci];
+        }
+      }
+    }
+
+    // particles
+    const K1yP = K1y, K1xP = K1x;
+    for (const p of particles) {
+      const ooz = 1 / (p.z + K2);
+      const xp = Math.round(cx + K1xP * ooz * p.x), yp = Math.round(cyc - K1yP * ooz * p.y);
+      if (xp < 0 || xp >= W || yp < 0 || yp >= H) continue;
+      const idx = xp + yp * W;
+      if (ooz > zbuf[idx]) out[idx] = p.life > 1.4 ? "*" : p.life > 0.7 ? "+" : ".";
+    }
+
+    // banner text
+    if (banner && performance.now() < banner.until) {
+      const txt = "  " + banner.text + "  ";
+      const y = 2, x0 = Math.max(0, Math.floor(cx - txt.length / 2));
+      for (let i = 0; i < txt.length && x0 + i < W; i++) out[x0 + i + y * W] = txt[i];
+    }
+
+    return out;
+  }
+  const toText = (arr, W) => { let s = ""; for (let i = 0; i < arr.length; i += W) s += arr.slice(i, i + W).join("") + "\n"; return s; };
+
+  // deterministic hash for stars
+  function hash(x, y) { let h = (x * 374761393 + y * 668265263) | 0; h = (h ^ (h >>> 13)) * 1274126177; return ((h ^ (h >>> 16)) >>> 0) / 4294967295; }
+
+  function renderSkyAndGrid(t) {
+    const W = COLS, H = ROWS, horizon = Math.floor(H * 0.58), cx = W / 2;
+    const sky = [], grid = [];
+    const aspect = charH / charW;
+    const sunR = H * 0.32;
+    const scroll = t * 1.6;
+    const depth = dy => 6 / dy;
+
+    for (let y = 0; y < H; y++) {
+      const sRow = new Array(W).fill(" "), gRow = new Array(W).fill(" ");
+      if (y < horizon) {
+        for (let x = 0; x < W; x++) {
+          // synthwave sun with slits
+          const dx = (x - cx) / aspect * 1.0, dy = (y - horizon + 0.5) * 1.0;
+          const r = Math.hypot(dx, dy);
+          if (r < sunR) {
+            const fromBottom = horizon - y;
+            const slit = fromBottom < sunR * 0.55 && fromBottom % 2 === 1;
+            sRow[x] = slit ? " " : (r > sunR - 1.2 ? ":" : "=");
+          } else {
+            const h = hash(x, y);
+            if (h < 0.02) sRow[x] = (Math.sin(t * 3 + h * 900) > 0.3) ? "*" : ".";
+            else if (h < 0.035) sRow[x] = ".";
+          }
+        }
+      } else if (y === horizon) {
+        gRow.fill("_");
+      } else {
+        const dy = y - horizon;
+        // horizontal lines: rows where the scrolled depth crosses an integer
+        const z1 = depth(dy - 0.5) - scroll, z2 = depth(dy + 0.5) - scroll;
+        if (Math.floor(z1) !== Math.floor(z2)) gRow.fill(dy < 4 ? "-" : "=");
+        // vertical lines converging to the vanishing point
+        const spread = 2.6 * aspect * 0.5;
+        for (let k = -40; k <= 40; k++) {
+          const xp = Math.round(cx + k * dy * spread);
+          if (xp < 0 || xp >= W) continue;
+          gRow[xp] = k === 0 ? "|" : k < 0 ? "/" : "\\";
+        }
+      }
+      sky.push(sRow.join("")); grid.push(gRow.join(""));
+    }
+    return [sky.join(""), grid.join("")];
+  }
+
+  let last = performance.now(), t0 = last;
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    const t = (now - t0) / 1000;
+    if (!dragging) {
+      spinV += (0.9 - spinV) * Math.min(1, dt * 1.5); // ease back to idle spin
+      rotY += spinV * dt;
+      rotX += (-0.35 - rotX) * dt * 0.8;
+    }
+    for (const p of particles) { p.x += p.vx * dt; p.y += p.vy * dt; p.z += p.vz * dt; p.vy -= 4 * dt; p.life -= dt; }
+    particles = particles.filter(p => p.life > 0);
+
+    const [sky, grid] = renderSkyAndGrid(t);
+    const obj = renderObject(t);
+    // the cartridge hides whatever is behind it
+    const skyA = sky.split(""), gridA = grid.split("");
+    const halo = (i) => obj[i] !== " " || obj[i - 1] > " " || obj[i + 1] > " ";
+    for (let i = 0; i < obj.length; i++) if (halo(i)) { skyA[i] = " "; gridA[i] = " "; }
+    skyEl.textContent = toText(skyA, COLS);
+    gridEl.textContent = toText(gridA, COLS);
+    objEl.textContent = toText(obj, COLS);
+    requestAnimationFrame(frame);
+  }
+
+  // =========================================================
+  //  UI
+  // =========================================================
+  const listEl = document.getElementById("list");
+  const statsEl = document.getElementById("stats");
+  const barEl = document.getElementById("bar");
+  const selEl = document.getElementById("sel");
+  const STATUS_ICON = { todo: "[ ]", playing: "[>]", beaten: "[X]" };
+  const STATUS_NAME = { todo: "BACKLOG", playing: "PLAYING", beaten: "BEATEN" };
+  const NEXT = { todo: "playing", playing: "beaten", beaten: "todo" };
+
+  function renderList() {
+    const beaten = games.filter(g => g.status === "beaten").length;
+    const playing = games.filter(g => g.status === "playing").length;
+    const backlog = games.length - beaten - playing;
+    statsEl.textContent = `BEATEN ${beaten} · PLAYING ${playing} · BACKLOG ${backlog} · FREE SLOTS ${MAX - games.length}`;
+
+    const width = window.innerWidth < 600 ? 14 : 25;
+    const filled = Math.round(beaten / MAX * width);
+    barEl.textContent = `LIFE PROGRESS [${"#".repeat(filled)}${".".repeat(width - filled)}] ${beaten}/${MAX}`;
+
+    const q = query.trim().toLowerCase();
+    const shown = games
+      .map((g, i) => ({ g, i }))
+      .filter(({ g }) => (filter === "all" || g.status === filter) &&
+        (!q || g.title.toLowerCase().includes(q) || (g.platform || "").toLowerCase().includes(q)));
+
+    listEl.textContent = "";
+    if (!shown.length) {
+      const li = document.createElement("li");
+      li.className = "empty";
+      li.textContent = games.length
+        ? "NO GAMES MATCH THIS FILTER."
+        : "  .-------.\n  | NO    |\n  | DISC  |\n  '-------'\nINSERT YOUR FIRST GAME ABOVE.";
+      if (!games.length) {
+        const btn = document.createElement("button");
+        btn.textContent = "[ OR LOAD THE 100 LIVES LIST ]";
+        btn.style.marginTop = "12px";
+        btn.addEventListener("click", loadStarterList);
+        li.append("\n", btn);
+      }
+      listEl.appendChild(li);
+    }
+    for (const { g, i } of shown) {
+      const li = document.createElement("li");
+      li.className = "game " + g.status + (g.id === selectedId ? " selected" : "");
+      li.addEventListener("click", () => { selectedId = g.id; renderList(); });
+
+      const num = document.createElement("span");
+      num.className = "num"; num.textContent = "#" + String(i + 1).padStart(3, "0");
+
+      const chk = document.createElement("button");
+      chk.className = "chk"; chk.textContent = STATUS_ICON[g.status];
+      chk.title = "Now: " + STATUS_NAME[g.status] + " — click for " + STATUS_NAME[NEXT[g.status]];
+      chk.addEventListener("click", e => {
+        e.stopPropagation();
+        g.status = NEXT[g.status];
+        g.beatenAt = g.status === "beaten" ? now() : null;
+        g.updatedAt = now();
+        if (g.status === "beaten") celebrate("*** " + g.title.toUpperCase().slice(0, 40) + " BEATEN! ***");
+        selectedId = g.id;
+        changed();
+      });
+
+      const name = document.createElement("span");
+      name.className = "name"; name.textContent = g.title;
+
+      const plat = document.createElement("span");
+      plat.className = "plat"; plat.textContent = g.platform ? g.platform.toUpperCase() : "";
+
+      const stars = document.createElement("span");
+      stars.className = "stars";
+      for (let s = 1; s <= 5; s++) {
+        const st = document.createElement("span");
+        st.textContent = "*";
+        if (s > (g.rating || 0)) st.className = "off";
+        st.title = "Rate " + s + "/5";
+        st.addEventListener("click", e => {
+          e.stopPropagation();
+          g.rating = g.rating === s ? 0 : s;
+          g.updatedAt = now();
+          changed();
+        });
+        stars.appendChild(st);
+      }
+
+      const del = document.createElement("button");
+      del.className = "del"; del.textContent = "x"; del.title = "Remove";
+      del.addEventListener("click", e => {
+        e.stopPropagation();
+        if (!confirm(`Remove "${g.title}" from your list?`)) return;
+        tombstone(g);
+        if (selectedId === g.id) selectedId = null;
+        changed();
+      });
+
+      li.append(num, chk, name, plat, stars, del);
+      listEl.appendChild(li);
+    }
+
+    const sel = games.find(g => g.id === selectedId);
+    selEl.textContent = sel
+      ? `> ${sel.title.toUpperCase()}${sel.platform ? " [" + sel.platform.toUpperCase() + "]" : ""} · ${STATUS_NAME[sel.status]}${sel.rating ? " · " + "*".repeat(sel.rating) : ""}`
+      : `> ${MAX - beatenCount()} GAMES LEFT TO BEAT`;
+  }
+  const beatenCount = () => games.filter(g => g.status === "beaten").length;
+  function tombstone(g) {
+    for (const k of Object.keys(g)) if (k !== "id") delete g[k];
+    g.deleted = true; g.updatedAt = now();
+  }
+
+  document.getElementById("addForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const titleIn = document.getElementById("titleIn"), platIn = document.getElementById("platIn");
+    const title = titleIn.value.trim();
+    if (!title) return;
+    if (games.length >= MAX) { alert("YOUR LIST IS FULL: 100/100.\nRemove a game to make room."); return; }
+    if (games.some(g => g.title.toLowerCase() === title.toLowerCase())) { alert("That game is already on your list."); return; }
+    const t = now();
+    const g = { id: uid(), title, platform: platIn.value.trim(), status: "todo", rating: 0, added: t, beatenAt: null, updatedAt: t };
+    all.push(g);
+    selectedId = g.id;
+    titleIn.value = ""; platIn.value = "";
+    titleIn.focus();
+    spinV = 6;
+    changed();
+  });
+
+  document.querySelectorAll("[data-filter]").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach(x => x.classList.toggle("on", x === b));
+    renderList();
+  }));
+  document.getElementById("search").addEventListener("input", e => { query = e.target.value; renderList(); });
+
+  // themes
+  const THEMES = ["green", "amber", "cyan"];
+  let theme = 0;
+  try { theme = Math.max(0, THEMES.indexOf(localStorage.getItem(KEY + "-theme") || "green")); } catch {}
+  function applyTheme() {
+    document.body.classList.remove("amber", "cyan");
+    if (THEMES[theme] !== "green") document.body.classList.add(THEMES[theme]);
+    document.getElementById("themeBtn").textContent = "THEME: " + THEMES[theme].toUpperCase();
+    try { localStorage.setItem(KEY + "-theme", THEMES[theme]); } catch {}
+  }
+  document.getElementById("themeBtn").addEventListener("click", () => { theme = (theme + 1) % THEMES.length; applyTheme(); });
+
+  // export / import
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify({ version: 1, games }, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "100-games-save-" + new Date().toISOString().slice(0, 10) + ".json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  const importFile = document.getElementById("importFile");
+  document.getElementById("importBtn").addEventListener("click", () => importFile.click());
+  // replace the list with a save file's contents (from a file or the built-in list)
+  function importSave(data) {
+      const list = Array.isArray(data) ? data : data && data.games;
+      if (!Array.isArray(list)) throw new Error("bad file");
+      const t = now();
+      const incoming = cleanList(list.map(g => (g && typeof g.id !== "string") ? { ...g, id: uid() } : g))
+        .filter(g => !g.deleted).slice(0, MAX)
+        .map(g => ({ ...g, updatedAt: t })); // the loaded file wins over what's here
+      if (!confirm(`Load ${incoming.length} games? This replaces your current list.`)) return;
+      const keep = new Set(incoming.map(g => g.id));
+      for (const g of all) if (!g.deleted && !keep.has(g.id)) tombstone(g);
+      all = merge(all, incoming);
+      selectedId = null;
+      changed();
+  }
+  importFile.addEventListener("change", async () => {
+    const file = importFile.files[0];
+    if (!file) return;
+    try { importSave(JSON.parse(await file.text())); }
+    catch { alert("Could not read that save file."); }
+    importFile.value = "";
+  });
+  async function loadStarterList() {
+    try {
+      const r = await fetch("lists/100-lives.json", { cache: "no-store" });
+      if (!r.ok) throw new Error();
+      importSave(await r.json());
+    } catch { alert("Couldn't load the list. Check your internet connection and try again."); }
+  }
+  document.getElementById("wipeBtn").addEventListener("click", () => {
+    if (!games.length || !confirm("Wipe your ENTIRE list? This also wipes it on your other synced devices.")) return;
+    for (const g of games) tombstone(g);
+    selectedId = null;
+    changed();
+  });
+
+  // =========================================================
+  //  CLOUD SAVE (private GitHub Gist)
+  //  The list is stored as a JSON file in a secret gist in the
+  //  user's own GitHub account. Every device with the same token
+  //  finds that gist and merges with it.
+  // =========================================================
+  const Cloud = (() => {
+    const FILE = "100-before-i-die.json";
+    const API = "https://api.github.com";
+    const CKEY = KEY + "-cloud";
+    let cfg = {};
+    try { cfg = JSON.parse(localStorage.getItem(CKEY) || "{}") || {}; } catch {}
+    let timer = null, busy = null, again = false, lastSync = null;
+
+    const el = id => document.getElementById(id);
+    const connected = () => !!(cfg.token && cfg.gistId);
+    function store() { try { localStorage.setItem(CKEY, JSON.stringify(cfg)); } catch {} }
+
+    function status(text, bad) {
+      el("cloudStatus").textContent = text;
+      el("cloudStatus").style.color = bad ? "var(--danger)" : "";
+    }
+    function showUI() {
+      el("cloudOff").hidden = connected();
+      el("cloudOn").hidden = !connected();
+      if (!connected()) status("CLOUD: OFF · THIS LIST ONLY LIVES IN THIS BROWSER");
+    }
+
+    async function gh(path, opts = {}) {
+      const r = await fetch(API + path, {
+        method: opts.method || "GET",
+        cache: "no-store",
+        headers: {
+          "Authorization": "Bearer " + cfg.token,
+          "Accept": "application/vnd.github+json",
+          ...(opts.body ? { "Content-Type": "application/json" } : {})
+        },
+        body: opts.body ? JSON.stringify(opts.body) : undefined
+      });
+      if (!r.ok) { const e = new Error("HTTP " + r.status); e.status = r.status; throw e; }
+      return r.json();
+    }
+    const payload = () => ({ files: { [FILE]: { content: JSON.stringify({ version: 2, games: all }) } } });
+
+    async function findOrCreateGist() {
+      for (let page = 1; page <= 10; page++) {
+        const list = await gh(`/gists?per_page=100&page=${page}`);
+        const hit = list.find(g => g.files && g.files[FILE]);
+        if (hit) return hit.id;
+        if (list.length < 100) break;
+      }
+      const created = await gh("/gists", { method: "POST", body: { description: "100 Before I Die · save file", public: false, ...payload() } });
+      return created.id;
+    }
+
+    async function pull() {
+      const g = await gh(`/gists/${cfg.gistId}`);
+      const f = g.files && g.files[FILE];
+      if (!f) return [];
+      let text = f.content;
+      if (f.truncated) text = await (await fetch(f.raw_url, { cache: "no-store" })).text();
+      const data = JSON.parse(text || "[]");
+      return cleanList(Array.isArray(data) ? data : data.games);
+    }
+
+    async function syncOnce() {
+      const remote = await pull();
+      const merged = merge(all, remote);
+      const localChanged = fingerprint(merged) !== fingerprint(all);
+      const remoteChanged = fingerprint(merged) !== fingerprint(remote);
+      if (localChanged) { all = merged; refresh(); save(); renderList(); }
+      if (remoteChanged) await gh(`/gists/${cfg.gistId}`, { method: "PATCH", body: payload() });
+      lastSync = new Date();
+      status("CLOUD: SYNCED " + lastSync.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " · AUTO-SAVE ON");
+    }
+
+    // run one sync at a time; if asked again mid-sync, run once more after
+    function sync() {
+      if (!connected()) return Promise.resolve();
+      if (busy) { again = true; return busy; }
+      status("CLOUD: SYNCING...");
+      busy = syncOnce()
+        .catch(err => {
+          if (err.status === 401) status("CLOUD: TOKEN REJECTED · DISCONNECT AND PASTE A NEW ONE", true);
+          else if (!navigator.onLine) status("CLOUD: OFFLINE · SAVED HERE, WILL SYNC WHEN BACK ONLINE", true);
+          else status("CLOUD: SYNC FAILED (" + err.message + ") · WILL RETRY", true);
+        })
+        .finally(() => { busy = null; if (again) { again = false; sync(); } });
+      return busy;
+    }
+
+    async function connect(token) {
+      token = token.replace(/\s+/g, ""); // tokens never contain spaces or line breaks
+      if (!/^(ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{60,})$/.test(token)) {
+        status(/^(ghp_|github_pat_)/.test(token)
+          ? "CLOUD: THAT TOKEN IS CUT OFF (" + token.length + " CHARACTERS) · COPY IT AGAIN WITH GITHUB'S COPY BUTTON"
+          : "CLOUD: THAT ISN'T A GITHUB TOKEN · IT SHOULD START WITH ghp_", true);
+        return;
+      }
+      cfg = { token };
+      status("CLOUD: CONNECTING...");
+      try {
+        cfg.gistId = await findOrCreateGist();
+        store(); showUI();
+        await sync();
+      } catch (err) {
+        cfg = {}; store(); showUI();
+        status(
+          err.status === 401 ? "CLOUD: GITHUB REJECTED THAT TOKEN · IT MAY BE EXPIRED, DELETED OR MISCOPIED · MAKE A NEW ONE" :
+          (err.status === 403 || err.status === 404) ? "CLOUD: TOKEN WORKS BUT CAN'T SAVE GISTS · MAKE A NEW ONE WITH THE 'gist' BOX TICKED" :
+          "CLOUD: COULD NOT CONNECT (" + err.message + ") · CHECK YOUR INTERNET", true);
+      }
+    }
+    function disconnect() {
+      if (!confirm("Disconnect cloud save on this device? Your list stays here and in the cloud.")) return;
+      cfg = {}; store(); showUI();
+    }
+
+    el("cloudForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const t = el("tokenIn").value;
+      if (!t.trim()) return;
+      el("tokenIn").value = "";
+      connect(t);
+    });
+    el("syncBtn").addEventListener("click", () => sync());
+    el("disconnectBtn").addEventListener("click", disconnect);
+
+    // keep devices in step: on open, on return to the tab, when back online, and every minute
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) sync(); });
+    window.addEventListener("online", () => sync());
+    setInterval(() => { if (!document.hidden) sync(); }, 60000);
+
+    showUI();
+    return {
+      connected,
+      start: () => sync(),
+      // auto-save: push shortly after the user stops making changes
+      schedule() { if (!connected()) return; clearTimeout(timer); status("CLOUD: SAVING..."); timer = setTimeout(sync, 1200); }
+    };
+  })();
+
+  // =========================================================
+  //  START
+  // =========================================================
+  applyTheme();
+  const start = () => { measure(); renderList(); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+  start();
+  Cloud.start();
+  window.addEventListener("resize", () => { measure(); renderList(); });
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
